@@ -7,18 +7,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 object Detector {
-    private var isFontInUniCode: Boolean? = null
+    private const val TAG = "Detector"
+    var codeType: CodeType = CodeType.UNICODE
+        private set
 
     @SuppressLint("SetTextI18n")
     fun initialize(context: Context) {
-        if (isFontInUniCode != null) {
-            Log.i("Detector", "Detector was already initialized.")
-            return
-        }
-
+        Log.i(TAG, "Detector is initialized.")
 
         val wrapContent = ViewGroup.LayoutParams.WRAP_CONTENT
-        val textView = TextView(context, null)
+        val textView = TextView(context)
         textView.apply {
             layoutParams = ViewGroup.LayoutParams(wrapContent, wrapContent)
 
@@ -30,13 +28,20 @@ object Detector {
             measure(wrapContent, wrapContent)
             val length2 = measuredWidth
 
-            isFontInUniCode = length1 == length2
+            if(length1 != length2) codeType = CodeType.ZAWGYI
         }
     }
 
     fun detectedZawgyi(): Boolean {
-        if (null == isFontInUniCode)
-            throw UnsupportedOperationException("Detector was not initialized.")
-        return isFontInUniCode?.not() ?: false
+        return codeType == CodeType.ZAWGYI
+    }
+
+    fun detectedUnicode(): Boolean {
+        return codeType == CodeType.UNICODE
+    }
+
+    //will implement later
+    private fun detectString(string: String) : CodeType{
+        return CodeType.UNICODE
     }
 }

@@ -2,14 +2,14 @@ package com.naulian.zawni
 
 import android.content.Context
 
-fun String.zawnify(): String {
+//change unicode into device encoding
+fun String.unify(): String {
     val detectedZawgyi = Detector.detectedZawgyi()
     if (detectedZawgyi) {
         return Converter.uniToZg(this)
     }
     return this
 }
-
 
 object Zawni {
     fun initialize(context: Context){
