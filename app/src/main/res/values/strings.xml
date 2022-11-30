@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Zawni</string>
+    <string name="zawgyi2unicode">Zawgyi2Unicode</string>
+    <string name="unicode_to_zawgyi">Unicode to Zawgyi</string>
+    <string name="zawgyi_to_unicode">Zawgyi to Unicode</string>
+    <string name="any_to_readable">Any to Readable</string>
 </resources>
